@@ -12,7 +12,7 @@ const router = express.Router();
 router.get("/", async (req, res, next) => {
   try {
     const events = await getAll();
-    res.json({ events: events })
+    res.json({ events: events });
     // setTimeout(() => {
     //   res.json({ events: events });
     // }, 1500);
@@ -61,6 +61,9 @@ router.post("/", async (req, res, next) => {
   try {
     await add(data);
     res.status(201).json({ message: "Event saved.", event: data });
+    // setTimeout(() => {
+    //   res.status(201).json({ message: "Event saved.", event: data });
+    // }, 1500); demo to have a feedback while submission is loading
   } catch (error) {
     next(error);
   }
