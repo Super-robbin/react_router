@@ -36,11 +36,13 @@ import EventDetailPage from "./pages/EventDetailPage";
 import NewEventPage from "./pages/NewEventPage";
 import EditEventPage from "./pages/EditEventPage";
 import EventsRootLayout from "./pages/EventsRoot";
+import ErrorPage from "./pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage />, // the error in the root element will reflect on children if errors occur
     children: [
       { path: "/", element: <HomePage /> },
       {
