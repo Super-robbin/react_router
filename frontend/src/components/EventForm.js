@@ -1,8 +1,14 @@
-import { Form, useNavigate, useNavigation } from "react-router-dom";
+import {
+  Form,
+  useNavigate,
+  useNavigation,
+  useActionData,
+} from "react-router-dom";
 
 import classes from "./EventForm.module.css";
 
 function EventForm({ method, event }) {
+  const data = useActionData(); // it gives us access to the data returned by the action (not by the loader)
   const navigate = useNavigate();
   const navigation = useNavigation();
 
@@ -14,6 +20,11 @@ function EventForm({ method, event }) {
 
   return (
     <Form method="post" className={classes.form}>
+      {data && data.errors && (
+        <ul>
+          {Object.values(data.errors).map((err) => <li key={err}>{err}</li>)}
+        </ul>
+      )}
       <p>
         <label htmlFor="title">Title</label>
         <input
